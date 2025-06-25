@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pilih Subtitle Indonesia</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    async function loadSubtitleList() {
+      const list = document.getElementById('subtitleList');
+      const response = await fetch('subtitle/'); // asumsi server support directory listing
+      const text = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(text, 'text/html');
+      const links = [...doc.querySelectorAll('a')].filter(link => link.href.endsWith('.vtt'));
+
+      links.forEach(link => {
+        const filename = link.textContent;
+        const item = document.createElement('div');
+        item.className = 'subtitle-item';
+        item.innerHTML = `<a href="index.html?subtitle=subtitle/${filename}">${filename}</a>`;
+        list.appendChild(item);
+      });
+    }
+
+    window.onload = loadSubtitleList;
+  </script>
+  <style>
+    .subtitle-item { margin: 10px 0; }
+    .subtitle-item a {
+      color: #e50914;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .subtitle-item a:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="logo">🎬 Pilih Subtitle Indonesia</h1>
+    <div id="subtitleList"></div>
+  </div>
+</body>
+</html>

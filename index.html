@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎬 IndoFlix</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="logo">🎬 IndoFlix</h1>
+    <p class="tagline">Nonton Video + Subtitle Indonesia Otomatis</p>
+
+    <div class="form-group">
+      <input type="text" id="videoURL" placeholder="🔗 Tempel link .mp4 di sini">
+      <input type="text" id="judulFilm" placeholder="🎞️ Masukkan Judul Film">
+      <button onclick="playVideo()">▶️ Play Tanpa Subtitle</button>
+      <a href="findsubtitle.html" class="sub-btn">🎬 Pakai Subtitle Indonesia</a>
+    </div>
+
+    <div class="player-wrapper">
+      <video id="videoPlayer" controls crossorigin="anonymous">
+        <source id="videoSource" src="" type="video/mp4">
+        <track id="subtitleTrack" label="Indonesia" kind="subtitles" srclang="id" src="">
+        Browser Anda tidak mendukung video.
+      </video>
+    </div>
+  </div>
+</body>
+</html>
