@@ -1,91 +1,44 @@
 body {
-  margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(to right, #111, #000);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  position: relative;
-}
-
-.container {
+  background-color: #111;
+  color: white;
+  font-family: Arial, sans-serif;
   text-align: center;
-  max-width: 800px;
-  width: 100%;
+  padding: 20px;
 }
 
 .logo {
-  font-size: 2.5em;
+  font-size: 2em;
   color: #e50914;
-  margin-bottom: 0.3em;
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-.tagline {
-  color: #ccc;
-  margin-bottom: 2em;
-  font-style: italic;
-  animation: fadeIn 2s ease-in-out;
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 2em;
+  margin: 20px 0;
 }
 
 input[type="text"] {
-  padding: 12px;
-  font-size: 1em;
+  padding: 10px;
+  width: 60%;
+  max-width: 500px;
   border: none;
   border-radius: 5px;
-  background: #1e1e1e;
-  color: white;
-  outline: none;
 }
 
 button {
-  padding: 12px;
-  font-size: 1em;
+  padding: 10px 15px;
   background-color: #e50914;
   color: white;
   border: none;
   border-radius: 5px;
+  margin-left: 10px;
   cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background-color: #b00610;
-}
-
-.player-wrapper {
-  width: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
-  animation: fadeInUp 1s ease-out;
-}
-
-video {
-  width: 100%;
-  border: none;
-  border-radius: 10px;
 }
 
 .subtitle-dropdown {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 999;
+  margin: 20px auto;
+  max-width: 600px;
 }
 
 .subtitle-list {
-  margin-top: 10px;
   background: #222;
   border: 1px solid #e50914;
   border-radius: 5px;
@@ -100,8 +53,8 @@ video {
 }
 
 .subtitle-list div {
-  padding: 8px 12px;
-  border-bottom: 1px solid #333;
+  padding: 10px;
+  border-bottom: 1px solid #444;
   cursor: pointer;
   color: white;
 }
@@ -109,14 +62,4 @@ video {
 .subtitle-list div:hover {
   background-color: #e50914;
   color: black;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
 }

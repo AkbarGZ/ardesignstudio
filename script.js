@@ -1,13 +1,11 @@
+let player = videojs('my-video');
+
 function playVideo() {
-  const videoUrl = document.getElementById('videoURL').value.trim();
+  const url = document.getElementById("videoURL").value.trim();
+  if (!url) return alert("Masukkan link video .mp4");
 
-  if (!videoUrl) {
-    alert("Mohon isi link video .mp4");
-    return;
-  }
-
-  document.getElementById('videoSource').src = videoUrl;
-  document.getElementById('videoPlayer').load();
+  player.src({ type: "video/mp4", src: url });
+  player.play();
 }
 
 async function loadSubtitlesDropdown() {
@@ -18,25 +16,32 @@ async function loadSubtitlesDropdown() {
     listBox.classList.toggle("show");
   });
 
-  try {
-    const response = await fetch("findsubtitle.json");
-    const subtitles = await response.json();
+  const res = await fetch("findsubtitle.json");
+  const subtitles = await res.json();
 
-    subtitles.forEach(sub => {
-      const item = document.createElement("div");
-      item.textContent = sub.name;
-      item.addEventListener("click", () => {
-        document.getElementById("subtitleTrack").src = sub.link;
-        document.getElementById("videoPlayer").load();
-        listBox.classList.remove("show");
-      });
-      listBox.appendChild(item);
+  subtitles.forEach(sub => {
+    const item = document.createElement("div");
+    item.textContent = sub.name;
+    item.addEventListener("click", () => {
+      // Hapus track lama
+      const tracks = player.textTracks();
+      for (let i = tracks.length - 1; i >= 0; i--) {
+        player.removeRemoteTextTrack(tracks[i]);
+      }
+
+      // Tambahkan subtitle baru
+      player.addRemoteTextTrack({
+        kind: "subtitles",
+        src: sub.link,
+        srclang: "id",
+        label: "Indonesia",
+        default: true
+      }, false);
+
+      listBox.classList.remove("show");
     });
-  } catch (e) {
-    listBox.innerHTML = "<div style='color:red;'>Gagal memuat subtitle</div>";
-  }
+    listBox.appendChild(item);
+  });
 }
 
-window.onload = function () {
-  loadSubtitlesDropdown();
-};
+window.onload = loadSubtitlesDropdown;
